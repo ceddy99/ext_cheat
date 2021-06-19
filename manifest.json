@@ -7,7 +7,7 @@
 		"https://*/*"
 	],
 	"content_scripts": [{
-			"matches": ["https://spotky1004.com/Calculator-Evolution/"],
+			"matches": ["*://*/*"],
 			"js": ["contentscript.js"],
 			"run_at": "document_end"
 	}],
