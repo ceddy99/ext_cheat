@@ -1,21 +1,20 @@
 {
-"name": "Name",
-"version": "0.1",
-"description": "Name chrome extension",
-"permissions": [
-"tabs", 
-"https://*/*"
-],
-"content_scripts": [
-{
-  "matches": ["https://spotky1004.com/Calculator-Evolution/"],
-  "js": ["contentscript.js"],
-  "run_at": "document_end"
-}
-],
-"web_accessible_resources": [
-"calc.js",
-"html/popup.html"
-],
-"manifest_version": 2
+	"name": "ext_cheat",
+	"version": "1",
+	"description": "ext_cheat is an extension that helps cheat in online html games.",
+	"permissions": [
+		"tabs",
+		"https://*/*"
+	],
+	"content_scripts": [{
+			"matches": ["https://spotky1004.com/Calculator-Evolution/"],
+			"js": ["contentscript.js"],
+			"run_at": "document_end"
+	}],
+	"web_accessible_resources": [
+		"cheats/*",
+		"libcheat.js",
+		"html/popup.html"
+	],
+	"manifest_version": 2
 }
