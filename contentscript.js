@@ -1,12 +1,6 @@
 
-const configURL = chrome.extension.getURL('cheats/config.json');
-const xmlHttp = new XMLHttpRequest();
-xmlHttp.open("GET", configURL, false); // false for synchronous request
-xmlHttp.send(null);
-const config = JSON.parse(xmlHttp.responseText);
-
-
-if(config[location.href]) {
+function loadCheat(config) {
+	if(!config[location.href]) return;
 	const libcheat = document.createElement('script');
 	libcheat.src = chrome.extension.getURL('libcheat.js');
 	(document.head || document.documentElement).appendChild(libcheat);
@@ -15,3 +9,20 @@ if(config[location.href]) {
 	s.src = chrome.extension.getURL('cheats/'+config[location.href]);
 	(document.head || document.documentElement).appendChild(s);
 }
+
+const configURL = chrome.extension.getURL('cheats/config.json');
+const get = new XMLHttpRequest();
+get.open("GET", configURL, true);
+get.onload = function (e) {
+	if (get.readyState === 4) {
+		if (get.status === 200) {
+			loadCheat(JSON.parse(get.responseText));
+		} else {
+			console.error(get.statusText);
+		}
+	}
+};
+get.send(null);
+
+
+
